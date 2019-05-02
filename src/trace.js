@@ -464,7 +464,7 @@ export default function(Chart) {
 			var color = this.getOption(chart, 'line', 'color');
 
 			chart.ctx.beginPath();
-			chart.ctx.moveTo(chart.crosshair.x, yScale.getPixelForValue(yScale.max));
+			chart.ctx.moveTo(chart.crosshair.x, yScale.getPixelForValue(chart.data.datasets[0].interpolatedValue));
 			chart.ctx.lineWidth = lineWidth;
 			chart.ctx.strokeStyle = color;
 			chart.ctx.lineTo(chart.crosshair.x, yScale.getPixelForValue(yScale.min));
@@ -508,7 +508,7 @@ export default function(Chart) {
 				var xScale = chart.scales[meta.xAxisID];
 				var xValue = xScale.getValueForPixel(chart.crosshair.x);
 
-				if (meta.hidden || !dataset.interpolate) {
+				if (meta.hidden/* || !dataset.interpolate*/) {
 					continue;
 				}
 
